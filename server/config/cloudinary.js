@@ -6,15 +6,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
+  cloud_name: "dfu4raix4",
+  api_key:895448536935596,
+  api_secret: "U8ZaTowEX2syhfEVfYupbHMNNDI",
 });
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: "yt-social-app",
+    folder: "social-media",
     resource_type: "image",
   },
 });

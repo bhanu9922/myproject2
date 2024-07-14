@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const API = axios.create({
-  baseURL: "https://socio-junkie-backend.onrender.com/api/v1",
+  baseURL: "http://localhost:5000/api/v1",
 });
 
 export const getTimeLinePost = (username) =>
@@ -29,5 +29,5 @@ export const uploadPost = async (userId, desc, img) => {
 };
 
 export const getUserFriends = (userId) => API.get(`/users/friends/${userId}`);
-export const unfollowUser = (userId, id) => API.put(`/users/unfollow/${id}`, {userId: userId});
-export const followUser = (userId, id) => API.put(`/users/follow/${id}`, {userId: userId});
+export const unfollowUser = (userId, id) => API.put(`/users/unfollow/${id}`, { userId: userId });
+export const followUser = (userId, id) => API.put(`/users/follow/${id}`, { userId: userId });
