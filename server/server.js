@@ -16,7 +16,12 @@ dotenv.config();
 app.get("/", (req, res)=>
   res.send("Backend is working!")
 )
+app.use(helmet());
+app.use(morgan("common"));
+app.use(cors());
+app.use(express.json());
 
+app.use(routes);
 //comment schema
 
 const workoutTypeSchema = new mongoose.Schema({
@@ -31,7 +36,7 @@ const WorkoutType = mongoose.model('WorkoutType', workoutTypeSchema);
 
 //crud operations of workouttypes
 
-app.post('/workout-types', async (req, res) => {
+app.post("/workout-types", async (req, res) => {
 try {
     const workoutType = new WorkoutType(req.body);
     await workoutType.save();
@@ -42,7 +47,7 @@ try {
 });
 
 
-app.get('/workout-types', async (req, res) => {
+app.get("/workout-types", async (req, res) => {
 try {
     const workoutTypes = await WorkoutType.find();
     res.status(200).send(workoutTypes);
@@ -52,7 +57,7 @@ try {
 });
 
 
-app.patch('/workout-types/:id', async (req, res) => {
+app.patch("/workout-types/:id", async (req, res) => {
 try {
     const workoutType = await WorkoutType.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     if (!workoutType) {
@@ -65,7 +70,7 @@ try {
 });
 
 
-app.delete('/workout-types/:id', async (req, res) => {
+app.delete("/workout-types/:id", async (req, res) => {
 try {
     const workoutType = await WorkoutType.findByIdAndDelete(req.params.id);
     if (!workoutType) {
@@ -80,12 +85,7 @@ try {
 
 
 
-app.use(helmet());
-app.use(morgan("common"));
-app.use(cors());
-app.use(express.json());
 
-app.use(routes);
 
 app.listen(5000, () => {
   console.log("Server is Running");

@@ -29,7 +29,7 @@ useEffect(() => {
 
 const fetchWorkoutTypes = async () => {
   try {
-      const response = await axios.get('http//:localhost:5000/workout-types'); // Update this URL to your backend endpoint
+      const response = await axios.get("http://localhost:5000/workout-types"); // Update this URL to your backend endpoint
       setWorkoutTypes(response.data);
   } catch (error) {
       console.error('Error fetching workout types:', error);
@@ -38,13 +38,18 @@ const fetchWorkoutTypes = async () => {
 
 const addWorkoutType = async () => {
   try {
-      const response = await axios.post('http//:localhost:5000/workout-types', currentWorkoutType); // Update this URL to your backend endpoint
-      setWorkoutTypes([...workoutTypes, response.data]);
-      setCurrentWorkoutType({ comment: ''});
+    if (currentWorkoutType.comment.trim() === '') {
+      throw new Error('Comment cannot be empty');
+    }
+    const response = await axios.post('http://localhost:5000/workout-types', currentWorkoutType);
+    setWorkoutTypes([...workoutTypes, response.data]);
+    setCurrentWorkoutType({ comment: '' });
   } catch (error) {
-      console.error('Error adding workout type:', error);
+    console.error('Error adding workout type:', error);
+    toast.error(error.message || 'Failed to add workout type');
   }
 };
+
 
 const updateWorkoutType = (type) => {
   setCurrentWorkoutType(type);
@@ -53,7 +58,7 @@ const updateWorkoutType = (type) => {
 
 const saveWorkoutType = async () => {
   try {
-      const response = await axios.patch(`http//:localhost:5000/workout-types/${currentWorkoutType._id}`, currentWorkoutType); // Update this URL to your backend endpoint
+      const response = await axios.patch("http://localhost:5000/workout-types/${currentWorkoutType._id}", currentWorkoutType); // Update this URL to your backend endpoint
       const updatedTypes = workoutTypes.map(type =>
           type._id === currentWorkoutType._id ? response.data : type
       );
@@ -67,7 +72,7 @@ const saveWorkoutType = async () => {
 
 const deleteWorkoutType = async (id) => {
   try {
-      await axios.delete(`http//:localhost:5000/workout-types/${id}`); // Update this URL to your backend endpoint
+      await axios.delete("http://localhost:5000/workout-types/${id}"); // Update this URL to your backend endpoint
       setWorkoutTypes(workoutTypes.filter(type => type._id !== id));
   } catch (error) {
       console.error('Error deleting workout type:', error);
@@ -159,38 +164,37 @@ const deleteWorkoutType = async (id) => {
           <span className="text-sm">{like} likes</span>
         </div>
         <div>
-        <div className="comment-section">
-      <h2>Comments</h2>
-      <div>
-        <textarea
-           type="text"
-           placeholder="Add a comment..."
-           value={currentWorkoutType.comment}
-           onChange={(e) => setCurrentWorkoutType({ ...currentWorkoutType, comment: e.target.value })}
-          
-        />
-          {editing ? (
-                    <button type="submit" onClick={saveWorkoutType}>Post comment</button>
+        <div className="container mt-5">
+            <h1 class="head">Comments</h1>
+            <div className="mb-3">
+                <input
+                    type="text"
+                    className="form-control inpt"
+                    placeholder="Type"
+                    value={currentWorkoutType.comment}
+                    onChange={(e) => setCurrentWorkoutType({ ...currentWorkoutType, comment: e.target.value })}
+                />
+                
+                {editing ? (
+                    <button className="btn btn-success mt-2 btnn" onClick={saveWorkoutType}>POST</button>
                 ) : (
-                    <button  type="submit" onClick={addWorkoutType}>Add comment</button>
+                    <button className="btn btn-primary mt-2 btnnn" onClick={addWorkoutType}>Post comment</button>
                 )}
-       
-    
-      </div>
-      <ul className="list-group">
+            </div>
+            <ul className="list-group">
                 {workoutTypes.map(type => (
                     <li key={type._id} className="list-group-item d-flex justify-content-between align-items-center">
                         <div>
-                            <strong>{type.comment}</strong>
+                            <strong>{type.comment}</strong>: {type.comment}
                         </div>
                         <div>
-                            <button className="btn btn-warning mr-2" onClick={() => updateWorkoutType(type)}>Edit</button>
-                            <button className="btn btn-danger" onClick={() => deleteWorkoutType(type._id)}>Delete</button>
+                            <button className="btn btn-warning mr-2" onClick={() => updateWorkoutType(type)}>Edit comment</button>
+                            <button className="btn btn-danger" onClick={() => deleteWorkoutType(type._id)}>Delete comment</button>
                         </div>
                     </li>
                 ))}
             </ul>
-    </div>
+        </div>
         
         </div>
       </div>
