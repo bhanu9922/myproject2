@@ -13,11 +13,74 @@ import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 
-const Post = ({ post }) => {
+const Post = ({ post}) => {
   const [like, setLike] = useState(post.likes?.length);
   const [isLiked, setIsLiked] = useState(false);
   const [user, setUser] = useState({});
   const { user: currentUser } = useContext(AuthContext);
+  const [workoutTypes, setWorkoutTypes] = useState([]);
+  const [currentWorkoutType, setCurrentWorkoutType] = useState({ comment:''});
+  const [editing, setEditing] = useState(false);
+//extra
+
+useEffect(() => {
+  fetchWorkoutTypes();
+}, []);
+
+const fetchWorkoutTypes = async () => {
+  try {
+      const response = await axios.get('http//:localhost:5000/workout-types'); // Update this URL to your backend endpoint
+      setWorkoutTypes(response.data);
+  } catch (error) {
+      console.error('Error fetching workout types:', error);
+  }
+};
+
+const addWorkoutType = async () => {
+  try {
+      const response = await axios.post('http//:localhost:5000/workout-types', currentWorkoutType); // Update this URL to your backend endpoint
+      setWorkoutTypes([...workoutTypes, response.data]);
+      setCurrentWorkoutType({ comment: ''});
+  } catch (error) {
+      console.error('Error adding workout type:', error);
+  }
+};
+
+const updateWorkoutType = (type) => {
+  setCurrentWorkoutType(type);
+  setEditing(true);
+};
+
+const saveWorkoutType = async () => {
+  try {
+      const response = await axios.patch(`http//:localhost:5000/workout-types/${currentWorkoutType._id}`, currentWorkoutType); // Update this URL to your backend endpoint
+      const updatedTypes = workoutTypes.map(type =>
+          type._id === currentWorkoutType._id ? response.data : type
+      );
+      setWorkoutTypes(updatedTypes);
+      setCurrentWorkoutType({ comment: ''});
+      setEditing(false);
+  } catch (error) {
+      console.error('Error saving workout type:', error);
+  }
+};
+
+const deleteWorkoutType = async (id) => {
+  try {
+      await axios.delete(`http//:localhost:5000/workout-types/${id}`); // Update this URL to your backend endpoint
+      setWorkoutTypes(workoutTypes.filter(type => type._id !== id));
+  } catch (error) {
+      console.error('Error deleting workout type:', error);
+  }
+};
+
+  
+
+
+
+
+  
+
 
   useEffect(() => {
     setIsLiked(post.likes?.includes(currentUser._id));
@@ -96,9 +159,39 @@ const Post = ({ post }) => {
           <span className="text-sm">{like} likes</span>
         </div>
         <div>
-          <span className="cursor-pointer border-b-[1px] border-slate-300 text-sm">
-            {post.comment} comments
-          </span>
+        <div className="comment-section">
+      <h2>Comments</h2>
+      <div>
+        <textarea
+           type="text"
+           placeholder="Add a comment..."
+           value={currentWorkoutType.comment}
+           onChange={(e) => setCurrentWorkoutType({ ...currentWorkoutType, comment: e.target.value })}
+          
+        />
+          {editing ? (
+                    <button type="submit" onClick={saveWorkoutType}>Post comment</button>
+                ) : (
+                    <button  type="submit" onClick={addWorkoutType}>Add comment</button>
+                )}
+       
+    
+      </div>
+      <ul className="list-group">
+                {workoutTypes.map(type => (
+                    <li key={type._id} className="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{type.comment}</strong>
+                        </div>
+                        <div>
+                            <button className="btn btn-warning mr-2" onClick={() => updateWorkoutType(type)}>Edit</button>
+                            <button className="btn btn-danger" onClick={() => deleteWorkoutType(type._id)}>Delete</button>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+    </div>
+        
         </div>
       </div>
     </div>

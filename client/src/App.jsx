@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+//import CommentSection from "./components/CommentSection";
 
 function App() {
   const { user } = useContext(AuthContext);
@@ -25,7 +26,9 @@ function App() {
           path="/login"
           element={user ? <Navigate to={"/"} /> : <Login />}
         />
+       
       </Routes>
+      
     </>
   );
 }
