@@ -171,7 +171,7 @@ const Post = ({ post }) => {
               {workoutTypes.map(type => (
                 <li key={type._id} className="list-group-item d-flex justify-content-between align-items-center">
                   <div>
-                    <strong>{type.comment}</strong>: {type.comment}
+                    <strong>{type.comment}</strong>
                   </div>
                   <div>
                     <button className="btn btn-warning mr-2" onClick={() => updateWorkoutType(type)}>Edit comment</button>

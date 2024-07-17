@@ -1,13 +1,13 @@
 import React from "react";
-import { SiFeedly } from "react-icons/si";
+import { MdSettings, MdShare, MdViewList } from "react-icons/md";
 import { BiSolidVideos } from "react-icons/bi";
-import { MdGroups } from "react-icons/md";
+import { MdMovieCreation } from "react-icons/md";
 import {
   IoChatboxEllipsesSharp,
   IoBookmarks,
   IoBriefcase,
 } from "react-icons/io5";
-import { BsFillQuestionSquareFill } from "react-icons/bs";
+import {  MdPerson } from "react-icons/md";
 import { FaUserGraduate, FaCalendarDay } from "react-icons/fa";
 import testImage from "../../assets/profilepic.jpg";
 import { Friends } from "../../data/dummyData";
@@ -22,16 +22,16 @@ const Sidebar = () => {
       <div className=" p-[20px] ">
         <ul className="sidebarList m-0 p-0">
           <li>
-            <SiFeedly />
-            <span>Feeds</span>
+            <MdViewList />
+            <span>Posts</span>
           </li>
           <li>
             <BiSolidVideos />
             <span>Videos</span>
           </li>
           <li>
-            <MdGroups />
-            <span>Groups</span>
+            <MdMovieCreation />
+            <span>Reels</span>
           </li>
           <li>
             <IoChatboxEllipsesSharp />
@@ -39,23 +39,23 @@ const Sidebar = () => {
           </li>
           <li>
             <IoBookmarks />
-            <span>Bookmarks</span>
+            <span>Saved</span>
           </li>
           <li>
-            <BsFillQuestionSquareFill />
-            <span>Questions</span>
+            < MdPerson />
+            <span>Profile</span>
           </li>
           <li>
-            <IoBriefcase />
-            <span>Jobs</span>
+            <MdShare />
+            <span>ShareProfile</span>
           </li>
           <li>
-            <FaUserGraduate />
-            <span>Courses</span>
+            <MdSettings/>
+            <span>AccountSettings</span>
           </li>
           <li>
-            <FaCalendarDay />
-            <span>Events</span>
+            < MdPerson />
+            <span>Logout</span>
           </li>
         </ul>
         <div className="button">

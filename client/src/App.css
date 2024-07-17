@@ -24,3 +24,9 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #888;
 }
+.logoo{
+height: fit-content;
+width: fit-content;
+
+
+}

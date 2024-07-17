@@ -7,6 +7,10 @@ import userImage1 from "../assets/users/userImage1.jpg";
 import userImage2 from "../assets/users/userImage2.jpg";
 import userImage3 from "../assets/users/userImage3.jpg";
 import userImage4 from "../assets/users/userImage4.jpg";
+import userImage5 from "../assets/users/userImage5.jpg";
+import userImage6 from "../assets/users/userImage6.jpg";
+import userImage7 from "../assets/users/userImage7.jpg";
+import userImage8 from "../assets/users/userImage8.jpg";
 
 export const Posts = [
   {
@@ -50,22 +54,22 @@ export const Users = [
   {
     id: 101,
     profilePicture: userImage1,
-    username: "Kwaku Sam",
+    username: "Kalyani_kallu",
   },
   {
     id: 102,
     profilePicture: userImage2,
-    username: "Ama Serwaa",
+    username: "Sravanthi_bujji",
   },
   {
     id: 103,
     profilePicture: userImage3,
-    username: "Samuel Asante",
+    username: "Anu_chikki",
   },
   {
     id: 104,
     profilePicture: userImage4,
-    username: "Mary Marfo",
+    username: "Abhinaya_abhi",
   },
 ];
 
@@ -73,41 +77,41 @@ export const Friends = [
   {
     id: 101,
     profilePicture: userImage1,
-    username: "Kwaku Sam",
+    username: "Kalyani_kallu",
   },
   {
     id: 102,
     profilePicture: userImage2,
-    username: "Ama Serwaa",
+    username: "Sravanthi_bujji",
   },
   {
     id: 103,
     profilePicture: userImage3,
-    username: "Samuel Asante",
+    username: "Anu_chikki",
   },
   {
     id: 104,
     profilePicture: userImage4,
-    username: "Derrick Kello",
+    username: "Abhinaya_abhi",
   },
   {
     id: 105,
-    profilePicture: userImage1,
-    username: "Henry Crentsil",
+    profilePicture: userImage8,
+    username: "Bhanu_prasad",
   },
   {
     id: 106,
-    profilePicture: userImage2,
-    username: "Richard Arthur",
+    profilePicture: userImage5,
+    username: "Suresh",
   },
   {
     id: 107,
-    profilePicture: userImage3,
-    username: "Emmanuel Boateng",
+    profilePicture: userImage7,
+    username: "Uday",
   },
   {
     id: 108,
-    profilePicture: userImage4,
-    username: "Denis Owusu",
+    profilePicture: userImage6,
+    username: "Varshitha",
   },
 ];

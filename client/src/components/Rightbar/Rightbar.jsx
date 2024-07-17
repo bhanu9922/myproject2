@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import birthdayIcon from "../../assets/gift.png";
-import adImage from "../../assets/ad.jpg";
+import adImage from "../../assets/ad.png";
 import profilePic from "./assets/no-profile-image.png";
 import OnlineUsers from "../OnlineUsers/OnlineUsers";
 import { Users } from "../../data/dummyData";
@@ -57,7 +57,7 @@ const Rightbar = ({ user }) => {
             className="w-[40px] h-[40px] mr-[10px]"
           />
           <span className="font-semibold text-md">
-            <b>Henry Crentsil</b> and <b>52 others</b> have a birthday today
+          <b>The future of MERN lies </b>in embracing cutting-edge tech (GraphQL, serverless functions),<b> prioritising developer experience (security, tooling), and upskilling MERN developers (JavaScript, databases, WebAssembly, PWAs) to stay on top in the ever-changing web development world.</b>
           </span>
         </div>
         <img

@@ -38,10 +38,10 @@ const Register = () => {
       <div className="w-[70%] h-[70%] flex">
         <div className="flex flex-col justify-center" style={{ flex: 1 }}>
           <h1 className="font-extrabold text-3xl text-green-600">
-            Solu Social
+          <img src="https://res.cloudinary.com/dfu4raix4/image/upload/v1721163647/oqozhmxyuw79i1kiwaci.png"/>
           </h1>
           <span className="text-lg font-semibold">
-            Connect With Friends On Solu Social.
+          Connect With Friends On SOCIALBOUQET.
           </span>
         </div>
         <div className="flex flex-col justify-center" style={{ flex: 1 }}>
